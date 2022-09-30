@@ -1,19 +1,84 @@
 .app {
-  min-height: 100vh;
-  width: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+    // app主视图属性
+    height: 100vh;
+    min-height: 100vh;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+    .container {
+        // container属性
+        width: 80%;
+        min-width: 1000px;
+        height: 90%;
+        background-color: antiquewhite;
+        display: flex;
+        justify-content: space-between;
+        border-radius: 10px;
 
-  .container {
-    width: 85%;
+        &>div{// 左右两个面板公共属性
+            height: 100%;
+            border-radius: 10px;
+            background-color: ghostwhite;
+        }
+        
+        .tools-board {// 工具(左)面板属性
+            width: 200px;
+            min-width: 200px;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-evenly;
+            align-items: center;
 
+            &>div{
+                width: 90%;
+                height: 25%;
+                display: flex;
+                flex-direction: column;
 
-    .tools-board {
-      border-radius: 10px;
-      background-color: asliceblue;
+                .title{
+                    font-size: 1.3em;
+                }
+                .options{
+                    width: 100%;
+                    height: calc(100% - 1.3em - 20px);
+                    display: flex;
+                    flex-direction: column;
+                    align-items: flex-end;
+                    justify-content: space-evenly;
+
+                    .option{
+                        width: 95%;
+                    }
+                }
+            }
+
+            .tools_brush{
+                margin-top: 15px;
+                height: 30%;
+            }
+
+            .tools_tool{
+                height: 25%;
+            }
+
+            .tools_btns{
+                margin-bottom: 15px;
+                height: 20%;
+            }
+
+            .tools_color{
+                height: 15%;
+                flex-direction: row;
+            }
+        }
+        
+        .painting-board{// 画布(右)面板属性
+            width: calc(100% - 230px);
+        }
     }
-  }
 }
 
 

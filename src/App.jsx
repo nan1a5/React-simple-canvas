@@ -39,13 +39,13 @@ function App() {
               brushs.map(item => 
                 <li className={`option ${item.name}`}>
                   <img src={item.icon} alt={item.name} />
-                  <span>{item.name}</span>
+                  <span> {item.name}</span>
                 </li>
               )
             }
-              <li>
+              <li className='option'>
                 <input type="checkbox" name="fill-color" id="fill-color" />
-                <label htmlFor="fill-color">Fill Color</label>
+                <label htmlFor="fill-color"> Fill Color</label>
               </li>
             </ul>
           </div>
@@ -57,11 +57,12 @@ function App() {
               tools.map(item => 
                 <li className={`option ${item.name}`}>
                   <img src={item.icon} alt={item.name} />
-                  <span>{item.name}</span>
+                  <span>{ item.name}</span>
                 </li>
               )
             }
-              <li>
+              <li className='option'>
+                <span>thickness: </span>
                 <input type="range" name="" id="" />
               </li>
             </ul>
