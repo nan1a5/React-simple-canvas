@@ -5,10 +5,13 @@ import brush from './icons/brush.svg'
 import eraser from './icons/eraser.svg'
 
 import React,{ useState, useMemo } from 'react'
+import CanvasBox from './components/CanvasBox'
 import './App.scss';
 
 
 function App() {
+
+
   //定义渲染成菜单的数据数组
   const brushs = [{
     name: 'Circle',
@@ -62,7 +65,6 @@ function App() {
       setThickness(thickness)
     }, 50);
   }
-
 
 
   return (
@@ -121,8 +123,10 @@ function App() {
             <button>Save As IMG</button>
           </div>
         </div>
-        <div className='painting-board'></div>
+        <div className='painting-board'>
+          <CanvasBox className='canvas' color={color} shape={shape} isFill={isFill} tool={tool} thickness={thickness}></CanvasBox>
         </div>
+      </div>
     </div>
   );
 }

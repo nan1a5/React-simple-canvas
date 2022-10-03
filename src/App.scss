@@ -173,6 +173,11 @@
         
         .painting-board{// 画布(右)面板属性
             width: calc(100% - 220px);
+
+            .canvas{
+                width: 100%;
+                height: 100%;
+            }
         }
     }
 }
