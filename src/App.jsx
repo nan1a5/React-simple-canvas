@@ -9,7 +9,7 @@ import './App.scss';
 
 
 function App() {
-
+  //定义渲染成菜单的数据数组
   const brushs = [{
     name: 'Circle',
     icon: circle
@@ -30,8 +30,9 @@ function App() {
   const colors = ['white', 'rgb(250, 38, 38)', '#2382f6', 'rgb(39, 204, 39)', 'black']
 
 
+  //定义各种state
   //定义颜色state
-  const [color, setColor] = useState('white')
+  const [color, setColor] = useState('rgb(39, 204, 39)')
   const memoColor = useMemo(() => color, [color])//...
   // 定义画笔state
   const [shape, setShape] = useState('Circle')
@@ -43,11 +44,23 @@ function App() {
   const [thickness, setThickness] = useState(50)
 
 
-  const handleColorClick = (color) => {//处理更改颜色事件方法
+  //定义事件处理方法
+  const handleColorClick = color => {//处理更改颜色事件方法
     setColor(color)
   } 
-  const handleShapeClick = (shape) => {//处理更改画笔形状事件方法
+  const handleShapeClick = shape => {//处理更改画笔形状事件方法
     setShape(shape)
+  }
+  const handleIsFillChange = () => {//处理画笔更改填充状态事件方法
+    setIsFill(!isFill)
+  }
+  const handleToolClick = tool => {//处理工具切换事件方法
+    setTool(tool)
+  }
+  const handleThickness = thickness => {//处理切换画笔粗细事件方法
+    setTimeout(() => {
+      setThickness(thickness)
+    }, 50);
   }
 
 
@@ -61,14 +74,14 @@ function App() {
             <ul className='options'>
             {
               brushs.map(item => 
-                <li key={item.name} className={`option ${item.name}`}>
+                <li key={item.name} onClick={() => handleShapeClick(item.name)} className={item.name === shape?'actived option':'option'}>
                   <img src={item.icon} alt={item.name} />
                   <span> {item.name}</span>
                 </li>
               )
             }
-              <li className='option'>
-                <input type="checkbox" name="fill-color" id="fill-color" />
+              <li className={isFill?'actived option':'option'}>
+                <input onChange={() => handleIsFillChange()} type="checkbox" name="fill-color" id="fill-color" checked={isFill}/>
                 <label htmlFor="fill-color"> Fill Color</label>
               </li>
             </ul>
@@ -79,7 +92,7 @@ function App() {
             <ul className='options'>
             {
               tools.map(item => 
-                <li key={item.name} className={`option ${item.name}`}>
+                <li key={item.name} onClick={() => handleToolClick(item.name)} className={item.name === tool?'actived option':'option'}>
                   <img src={item.icon} alt={item.name} />
                   <span>{ item.name}</span>
                 </li>
@@ -87,7 +100,7 @@ function App() {
             }
               <li className='option thickness'>
                 <span>thickness: </span>
-                <input type="range" name="" id="" />
+                <input type="range" onChange={e => handleThickness(e.target.value)} value={thickness}/>
               </li>
             </ul>
           </div>

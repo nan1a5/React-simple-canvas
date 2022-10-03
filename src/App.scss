@@ -24,8 +24,8 @@
         }
         
         .tools-board {// 工具(左)面板属性
-            width: 200px;
-            min-width: 200px;
+            width: 190px;
+            min-width: 190px;
             height: 100%;
             display: flex;
             flex-direction: column;
@@ -55,7 +55,7 @@
                         align-items: center;
                         cursor: pointer;
 
-                        &:hover{
+                        &.actived,&:hover{
                             span,label{
                                 color: #4A98F7;
                             }
@@ -94,27 +94,6 @@
                 }
             }
 
-            .tools_btns{//按钮样式
-                display: flex;
-                flex-direction: column;
-                justify-content: space-evenly;
-                margin-bottom: 25px;
-                height: 18%;
-
-                button{
-                    height: 35px;
-                    background: transparent;
-                    border: 1px solid #121;
-                    border-radius: 5px;
-                    cursor: pointer;
-                }
-                button:nth-child(2){
-                    background-color: rgb(130, 167, 234);
-                    border: none;
-                    color: white;
-                }
-            }
-
             .tools_color{//颜色选项卡
                 height: 15%;
                 // flex-direction: row;
@@ -136,6 +115,8 @@
 
                             &.color_actived::before,&:hover::before{
                                 border-color: #ccc;
+                                height: 15px;
+                                width: 15px;
                             }
                         }
 
@@ -145,8 +126,8 @@
                             left: 50%;
                             transform: translate(-50%, -50%);
                             content: '';
-                            height: 15px;
-                            width: 15px;
+                            height: 14px;
+                            width: 14px;
                             background-color: inherit;
                             border-radius: inherit;
                             border: 2px solid #fff;
@@ -155,10 +136,43 @@
                 }
                 
             }
+
+            .tools_btns{//按钮样式
+                display: flex;
+                flex-direction: column;
+                justify-content: space-evenly;
+                margin-bottom: 25px;
+                height: 18%;
+
+                button{
+                    height: 35px;
+                    background: transparent;
+                    border: 1.5px solid #121;
+                    color: #626e6e;
+                    border-radius: 5px;
+                    cursor: pointer;
+
+                    &:hover{
+                        background-color: rgba($color: #000000, $alpha: 0.1);
+                        color: rgb(134, 122, 122);
+                        border-color: rgb(197, 192, 192);
+                    }
+                }
+                button:nth-child(2){
+                    background-color: rgb(72, 119, 205);
+                    border: none;
+                    color: white;
+
+                    &:hover{
+                        color: #f5eded;
+                        background-color: rgb(98, 146, 236);
+                    }
+                }
+            }
         }
         
         .painting-board{// 画布(右)面板属性
-            width: calc(100% - 230px);
+            width: calc(100% - 220px);
         }
     }
 }
