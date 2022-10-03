@@ -51,27 +51,109 @@
 
                     .option{
                         width: 95%;
+                        display: flex;
+                        align-items: center;
+                        cursor: pointer;
+
+                        &:hover{
+                            span,label{
+                                color: #4A98F7;
+                            }
+                            img{
+                                filter: invert(17%) sepia(90%) saturate(3000%) hue-rotate(900deg) brightness(100%) contrast(100%);
+                            }
+                        }
+
+                        span,label{
+                            margin: 0 5px;
+                        }
                     }
                 }
             }
 
             .tools_brush{
-                margin-top: 15px;
+                margin-top: 20px;
                 height: 30%;
             }
 
             .tools_tool{
                 height: 25%;
+
+                .options{
+                    .thickness{
+                        display: block;
+
+                        span{
+                            margin: 0;
+                        }
+
+                        input{
+                            margin-top: 4px;
+                        }
+                    }
+                }
             }
 
-            .tools_btns{
-                margin-bottom: 15px;
-                height: 20%;
+            .tools_btns{//按钮样式
+                display: flex;
+                flex-direction: column;
+                justify-content: space-evenly;
+                margin-bottom: 25px;
+                height: 18%;
+
+                button{
+                    height: 35px;
+                    background: transparent;
+                    border: 1px solid #121;
+                    border-radius: 5px;
+                    cursor: pointer;
+                }
+                button:nth-child(2){
+                    background-color: rgb(130, 167, 234);
+                    border: none;
+                    color: white;
+                }
             }
 
-            .tools_color{
+            .tools_color{//颜色选项卡
                 height: 15%;
-                flex-direction: row;
+                // flex-direction: row;
+                justify-content: center;
+
+                .options{//颜色选择选项卡样式
+                    display: flex;
+                    flex-direction: row;
+                    align-items: center;
+                    .option{//颜色选择器属性
+                        width: 22px;
+                        height: 22px;
+                        border-radius: 50%;
+                        position: relative;
+                        
+
+                        &:nth-child(1){//白色选择器特殊处理
+                            border: 1px solid #bfbfbf;
+
+                            &.color_actived::before,&:hover::before{
+                                border-color: #ccc;
+                            }
+                        }
+
+                        &.color_actived::before,&:hover::before{//颜色选择器被选中和hover时样式
+                            position: absolute;
+                            top: 50%;
+                            left: 50%;
+                            transform: translate(-50%, -50%);
+                            content: '';
+                            height: 15px;
+                            width: 15px;
+                            background-color: inherit;
+                            border-radius: inherit;
+                            border: 2px solid #fff;
+                        }
+                    }
+                }
+                
             }
         }
         

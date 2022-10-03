@@ -4,6 +4,7 @@ import triangle from './icons/triangle.svg'
 import brush from './icons/brush.svg'
 import eraser from './icons/eraser.svg'
 
+import React,{ useState, useMemo } from 'react'
 import './App.scss';
 
 
@@ -26,7 +27,30 @@ function App() {
     name: 'Eraser',
     icon: eraser
   }]
-  const colors = ['']
+  const colors = ['white', 'rgb(250, 38, 38)', '#2382f6', 'rgb(39, 204, 39)', 'black']
+
+
+  //定义颜色state
+  const [color, setColor] = useState('white')
+  const memoColor = useMemo(() => color, [color])//...
+  // 定义画笔state
+  const [shape, setShape] = useState('Circle')
+  //定义画笔是否填充state
+  const [isFill, setIsFill] = useState(true)
+  //定义工具state
+  const [tool, setTool] = useState('Brush')
+  //定义画笔粗细state
+  const [thickness, setThickness] = useState(50)
+
+
+  const handleColorClick = (color) => {//处理更改颜色事件方法
+    setColor(color)
+  } 
+  const handleShapeClick = (shape) => {//处理更改画笔形状事件方法
+    setShape(shape)
+  }
+
+
 
   return (
     <div className="app">
@@ -37,7 +61,7 @@ function App() {
             <ul className='options'>
             {
               brushs.map(item => 
-                <li className={`option ${item.name}`}>
+                <li key={item.name} className={`option ${item.name}`}>
                   <img src={item.icon} alt={item.name} />
                   <span> {item.name}</span>
                 </li>
@@ -55,13 +79,13 @@ function App() {
             <ul className='options'>
             {
               tools.map(item => 
-                <li className={`option ${item.name}`}>
+                <li key={item.name} className={`option ${item.name}`}>
                   <img src={item.icon} alt={item.name} />
                   <span>{ item.name}</span>
                 </li>
               )
             }
-              <li className='option'>
+              <li className='option thickness'>
                 <span>thickness: </span>
                 <input type="range" name="" id="" />
               </li>
@@ -73,9 +97,7 @@ function App() {
             <ul className='options'>
             {
               colors.map(item => 
-                <li className='option'>
-                  
-                </li>
+                <li key={item} onClick={() => handleColorClick(item)} className={memoColor === item?`option color_actived `:'option'} style={{background: item}}></li>
               )
             }
             </ul>
