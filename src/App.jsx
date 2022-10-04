@@ -4,16 +4,20 @@ import triangle from './icons/triangle.svg'
 import brush from './icons/brush.svg'
 import eraser from './icons/eraser.svg'
 
-import React,{ useState, useMemo } from 'react'
+import React,{ useState, useMemo, useRef } from 'react'
 import CanvasBox from './components/CanvasBox'
 import './App.scss';
 
 
 function App() {
 
+  const canvasRef = useRef()
 
   //定义渲染成菜单的数据数组
   const brushs = [{
+    name: 'Normal',
+    icon: brush
+  },{
     name: 'Circle',
     icon: circle
   },{
@@ -38,7 +42,7 @@ function App() {
   const [color, setColor] = useState('rgb(39, 204, 39)')
   const memoColor = useMemo(() => color, [color])//...
   // 定义画笔state
-  const [shape, setShape] = useState('Circle')
+  const [shape, setShape] = useState('Normal')
   //定义画笔是否填充state
   const [isFill, setIsFill] = useState(true)
   //定义工具state
@@ -119,12 +123,12 @@ function App() {
           </div>
 
           <div className="tools_btns">
-            <button>Clear All</button>
+            <button onClick={() => canvasRef.current.clearAll()}>Clear All</button>
             <button>Save As IMG</button>
           </div>
         </div>
         <div className='painting-board'>
-          <CanvasBox className='canvas' color={color} shape={shape} isFill={isFill} tool={tool} thickness={thickness}></CanvasBox>
+          <CanvasBox ref={canvasRef} className='canvas' color={color} shape={shape} isFill={isFill} tool={tool} thickness={thickness}></CanvasBox>
         </div>
       </div>
     </div>
